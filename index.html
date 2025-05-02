@@ -96,7 +96,7 @@
                             >Services</a
                         >
                         <a
-                            class="px-10 py-3 mt-2 text-base text-center bg-yellow-500 bg-hover text-white rounded-md md:mt-8 md:ml-4"
+                            class="px-10 py-3 mt-2 text-base text-center bg-white hover:bg-amber-100 text-secondary rounded-md md:mt-8 md:ml-4"
                             href="https://www.konnectusolutions.com/"
                             >Get Started</a
                         >
@@ -115,8 +115,10 @@
                             data-aos="fade-right"
                             data-aos-once="true"
                             class="my-4 text-5xl font-bold leading-tight text-darken">
-                            <span class="text-green-500">KonnectU to</span>
-                            Smart Solutions & Expert Services
+                            <span class="text-black">KonnectU to</span>
+                            <span class="text-black"
+                                >Smart Solutions & Expert Services</span
+                            >
                         </h1>
                         <p
                             data-aos="fade-down"
@@ -309,7 +311,7 @@
 
         <!-- About -->
         <section class="bg-cream py-20">
-            <div class="container mx-auto px-" id="about-us">
+            <div class="container mx-auto px-8" id="about-us">
                 <div
                     data-aos="flip-down"
                     class="text-center max-w-screen-md mx-auto">
@@ -953,6 +955,545 @@
             </div>
         </section>
 
+        <!-- Team -->
+        <section class="py-12 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section header -->
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-secondary">
+                        Meet Our Team
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-600">
+                        Our dedicated experts driving KonnectU’s success.
+                    </p>
+                </div>
+                <!-- Team grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Card 1 -->
+                    <div
+                        x-data="{ open: false }"
+                        class="relative flex flex-col md:flex-row rounded-lg overflow-hidden bg-gray-200">
+                        <div class="md:w-1/2">
+                            <img
+                                src="img/Abayomi Adeosun 1.jpg"
+                                alt="Agboola Shonekan"
+                                class="object-cover w-full h-48 md:h-full" />
+                        </div>
+                        <div class="p-6 flex flex-col justify-between md:w-2/3">
+                            <div>
+                                <div class="flex justify-between items-center">
+                                    <h3
+                                        class="text-xl font-semibold text-gray-900">
+                                        Agboola Shonekan
+                                    </h3>
+                                    <span class="text-sm text-gray-700"
+                                        >CEO</span
+                                    >
+                                </div>
+                                <p class="mt-4 text-gray-800">Civil Engineer</p>
+                            </div>
+                            <div class="mt-6 flex items-center justify-between">
+                                <div class="flex space-x-4">
+                                    <a
+                                        href="#"
+                                        class="text-gray-600 hover:text-gray-800"
+                                        ><i class="fab fa-facebook-f"></i
+                                    ></a>
+                                    <a
+                                        href="#"
+                                        class="text-gray-600 hover:text-gray-800"
+                                        ><i class="fab fa-instagram"></i
+                                    ></a>
+                                    <a
+                                        href="#"
+                                        class="text-gray-600 hover:text-gray-800"
+                                        ><i
+                                            class="fa-brands fa-linkedin-in"></i>
+                                    </a>
+                                </div>
+                                <button
+                                    @click="open = true"
+                                    class="text-secondary hover:underline text-sm font-medium">
+                                    View Profile
+                                </button>
+                            </div>
+
+                            <!-- Modal Overlay -->
+                            <div
+                                x-show="open"
+                                x-transition.opacity
+                                class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6">
+                                <!-- Backdrop -->
+                                <div
+                                    class="absolute inset-0 bg-black bg-opacity-50"
+                                    @click="open = false"></div>
+
+                                <!-- Modal Card -->
+                                <div
+                                    @click.stop
+                                    x-show="open"
+                                    x-transition.scale
+                                    class="relative bg-white rounded-lg shadow-lg w-full max-w-2xl h-auto max-h-[80vh] overflow-hidden flex flex-col">
+                                    <!-- Close Button -->
+                                    <button
+                                        @click="open = false"
+                                        class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            stroke-width="2">
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+
+                                    <!-- Modal Content -->
+                                    <div
+                                        class="p-6 overflow-y-auto mt-10 mb-4 px-6"
+                                        style="max-height: 70vh">
+                                        <div class="text-center">
+                                            <img
+                                                src="img/Abayomi Adeosun 1.jpg"
+                                                alt="Abayomi Adeosun"
+                                                class="mx-auto w-24 h-24 rounded-full object-cover mb-4" />
+                                            <h3
+                                                class="text-xl font-bold text-gray-900">
+                                                Agboola Shonekan
+                                            </h3>
+                                            <p class="text-gray-600 mb-4">
+                                                CEO
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="space-y-4 text-gray-700 text-sm leading-relaxed">
+                                            <p>
+                                                Agboola Shonekan is a dynamic
+                                                and results-driven construction
+                                                and engineering professional
+                                                with over 20 years of practical
+                                                experience spanning site
+                                                operations, project supervision,
+                                                and executive leadership. He
+                                                began his technical journey with
+                                                a NABTEB A-Level certification
+                                                in Brick/Block Laying and
+                                                Concreting, earning him a
+                                                Craftsman License (R.2936C) from
+                                                the Council for the Regulation
+                                                of Engineering in Nigeria
+                                                (COREN). Over the years, he
+                                                advanced from field-level roles
+                                                to founding and managing
+                                                multiple businesses, including
+                                                FixItAll Handyman Multi Services
+                                                Limited and KonnectU Solutions
+                                                Limited.
+                                            </p>
+                                            <p>
+                                                Agboola Shonekan is a dynamic
+                                                and results-driven construction
+                                                and engineering professional
+                                                with over 20 years of practical
+                                                experience spanning site
+                                                operations, project supervision,
+                                                and executive leadership. He
+                                                began his technical journey with
+                                                a NABTEB A-Level certification
+                                                in Brick/Block Laying and
+                                                Concreting, earning him a
+                                                Craftsman License (R.2936C) from
+                                                the Council for the Regulation
+                                                of Engineering in Nigeria
+                                                (COREN). Over the years, he
+                                                advanced from field-level roles
+                                                to founding and managing
+                                                multiple businesses, including
+                                                FixItAll Handyman Multi Services
+                                                Limited and KonnectU Solutions
+                                                Limited.
+                                            </p>
+                                            <p>
+                                                As CEO of KonnectU Solutions
+                                                Limited, Agboola is focused on
+                                                revolutionizing how clients
+                                                connect with skilled
+                                                professionals. He leverages his
+                                                extensive engineering background
+                                                and on-site experience to drive
+                                                innovation, promote service
+                                                excellence, and lead digital
+                                                transformation in the service
+                                                industry. His mission is to
+                                                bridge the gap between clients
+                                                and trusted experts—empowering
+                                                artisans, consultants, and
+                                                technicians through smart
+                                                technology, practical systems,
+                                                and a deep understanding of
+                                                real-world challenges. His
+                                                leadership fosters quality,
+                                                reliability, and efficiency
+                                                across every project.
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="mt-6 flex justify-center space-x-4">
+                                            <a
+                                                href="#"
+                                                class="text-gray-600 hover:text-gray-800"
+                                                ><i
+                                                    class="fab fa-facebook-f"></i
+                                            ></a>
+                                            <a
+                                                href="#"
+                                                class="text-gray-600 hover:text-gray-800"
+                                                ><i class="fab fa-instagram"></i
+                                            ></a>
+                                            <a
+                                                href="#"
+                                                class="text-gray-600 hover:text-gray-800"
+                                                ><i
+                                                    class="fa-brands fa-linkedin-in"></i
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Modal Overlay -->
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div
+                        x-data="{ open: false }"
+                        class="relative flex flex-col md:flex-row rounded-lg overflow-hidden bg-gray-200">
+                        <div class="md:w-1/2">
+                            <img
+                                src="img/Abayomi Adeosun 1.jpg"
+                                alt="Abayomi Adeosun"
+                                class="object-cover w-full h-48 md:h-full" />
+                        </div>
+                        <div class="p-6 flex flex-col justify-between md:w-2/3">
+                            <div>
+                                <div class="flex justify-between items-center">
+                                    <h3
+                                        class="text-xl font-semibold text-gray-900">
+                                        Abayomi Adeosun
+                                    </h3>
+                                    <span class="text-sm text-gray-700"
+                                        >COO</span
+                                    >
+                                </div>
+                                <p class="mt-4 text-gray-800">
+                                    Project Manager
+                                </p>
+                            </div>
+                            <div class="mt-6 flex items-center justify-between">
+                                <div class="flex space-x-4">
+                                    <a
+                                        href="#"
+                                        class="text-gray-600 hover:text-gray-800"
+                                        ><i class="fab fa-facebook-f"></i
+                                    ></a>
+                                    <a
+                                        href="#"
+                                        class="text-gray-600 hover:text-gray-800"
+                                        ><i class="fab fa-instagram"></i
+                                    ></a>
+                                    <a
+                                        href="#"
+                                        class="text-gray-600 hover:text-gray-800"
+                                        ><i class="fa-brands fa-linkedin-in"></i
+                                    ></a>
+                                </div>
+                                <button
+                                    @click="open = true"
+                                    class="text-secondary hover:underline text-sm font-medium">
+                                    View Profile
+                                </button>
+                            </div>
+
+                            <!-- Modal Overlay -->
+                            <div
+                                x-show="open"
+                                x-transition.opacity
+                                class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6">
+                                <!-- Backdrop -->
+                                <div
+                                    class="absolute inset-0 bg-black bg-opacity-50"
+                                    @click="open = false"></div>
+
+                                <!-- Modal Card -->
+                                <div
+                                    @click.stop
+                                    x-show="open"
+                                    x-transition.scale
+                                    class="relative bg-white rounded-lg shadow-lg w-full max-w-2xl h-auto max-h-[80vh] overflow-hidden flex flex-col">
+                                    <!-- Close Button -->
+                                    <button
+                                        @click="open = false"
+                                        class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            stroke-width="2">
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+
+                                    <!-- Modal Content -->
+                                    <div
+                                        class="p-6 overflow-y-auto mt-10 mb-4 px-6"
+                                        style="max-height: 70vh">
+                                        <div class="text-center">
+                                            <img
+                                                src="img/Abayomi Adeosun 1.jpg"
+                                                alt="Abayomi Adeosun"
+                                                class="mx-auto w-24 h-24 rounded-full object-cover mb-4" />
+                                            <h3
+                                                class="text-xl font-bold text-gray-900">
+                                                Abayomi Adeosun
+                                            </h3>
+                                            <p class="text-gray-600 mb-4">
+                                                COO
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="space-y-4 text-gray-700 text-sm leading-relaxed">
+                                            <p>
+                                                Abayomi Adeosun is a seasoned
+                                                management consultant with over
+                                                nine years of experience in
+                                                public health research, project
+                                                management, and operational
+                                                logistics. As a proven leader,
+                                                he has successfully spearheaded
+                                                complex projects, optimizing
+                                                resource allocation. With a
+                                                Master’s in International Health
+                                                from the University of Basel and
+                                                a Bachelor of Pharmacy from
+                                                Obafemi Awolowo University,
+                                                Abayomi combines strategic
+                                                insight with hands-on expertise
+                                                in stakeholder engagement,
+                                                budget management, and
+                                                data-driven decision-making. His
+                                                innovative approaches,
+                                                demonstrate his ability to
+                                                streamline logistics and deliver
+                                                results in high-pressure
+                                                environments. A Mandela
+                                                Washington Fellow, Abayomi
+                                                excels at leading diverse teams
+                                                and building robust systems to
+                                                drive organizational success.
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="mt-6 flex justify-center space-x-4">
+                                            <a
+                                                href="#"
+                                                class="text-gray-600 hover:text-gray-800"
+                                                ><i
+                                                    class="fab fa-facebook-f"></i
+                                            ></a>
+                                            <a
+                                                href="#"
+                                                class="text-gray-600 hover:text-gray-800"
+                                                ><i class="fab fa-instagram"></i
+                                            ></a>
+                                            <a
+                                                href="#"
+                                                class="text-gray-600 hover:text-gray-800"
+                                                ><i
+                                                    class="fa-brands fa-linkedin-in"></i
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Modal Overlay -->
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div
+                        x-data="{ open: false }"
+                        class="relative flex flex-col md:flex-row rounded-lg overflow-hidden bg-gray-200">
+                        <div class="md:w-1/2">
+                            <img
+                                src="img/Isaac.jpg"
+                                alt="Isaac"
+                                class="object-cover w-full h-48 md:h-full" />
+                        </div>
+                        <div class="p-6 flex flex-col justify-between md:w-2/3">
+                            <div>
+                                <div class="flex justify-between items-center">
+                                    <h3
+                                        class="text-xl font-semibold text-gray-900">
+                                        Isaac
+                                    </h3>
+                                    <span class="text-sm text-gray-700"
+                                        >CTO</span
+                                    >
+                                </div>
+                                <p class="mt-4 text-gray-800">
+                                    DevOps Engineer
+                                </p>
+                            </div>
+                            <div class="mt-6 flex items-center justify-between">
+                                <div class="flex space-x-4">
+                                    <a
+                                        href="#"
+                                        class="text-gray-600 hover:text-gray-800"
+                                        ><i class="fab fa-facebook-f"></i
+                                    ></a>
+                                    <a
+                                        href="#"
+                                        class="text-gray-600 hover:text-gray-800"
+                                        ><i class="fab fa-instagram"></i
+                                    ></a>
+                                    <a
+                                        href="#"
+                                        class="text-gray-600 hover:text-gray-800"
+                                        ><i class="fa-brands fa-linkedin-in"></i
+                                    ></a>
+                                </div>
+                                <button
+                                    @click="open = true"
+                                    class="text-secondary hover:underline text-sm font-medium">
+                                    View Profile
+                                </button>
+                            </div>
+
+                            <!-- Modal Overlay -->
+                            <div
+                                x-show="open"
+                                x-transition.opacity
+                                class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6">
+                                <!-- Backdrop -->
+                                <div
+                                    class="absolute inset-0 bg-black bg-opacity-50"
+                                    @click="open = false"></div>
+
+                                <!-- Modal Card -->
+                                <div
+                                    @click.stop
+                                    x-show="open"
+                                    x-transition.scale
+                                    class="relative bg-white rounded-lg shadow-lg w-full max-w-2xl h-auto max-h-[80vh] overflow-hidden flex flex-col">
+                                    <!-- Close Button -->
+                                    <button
+                                        @click="open = false"
+                                        class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            stroke-width="2">
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+
+                                    <!-- Modal Content -->
+                                    <div
+                                        class="p-6 overflow-y-auto mt-10 mb-4 px-6"
+                                        style="max-height: 70vh">
+                                        <div class="text-center">
+                                            <img
+                                                src="img/Isaac.jpg"
+                                                alt="Isaac"
+                                                class="mx-auto w-24 h-24 rounded-full object-cover mb-4" />
+                                            <h3
+                                                class="text-xl font-bold text-gray-900">
+                                                Isaac
+                                            </h3>
+                                            <p class="text-gray-600 mb-4">
+                                                CTO
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="space-y-4 text-gray-700 text-sm leading-relaxed">
+                                            <p>
+                                                Isaac is an accomplished
+                                                Cybersecurity Analyst and DevOps
+                                                Engineer, leveraging a strong
+                                                foundation as a Digitization
+                                                Project Associate in the Energy
+                                                Technology sector. Renowned for
+                                                their ability to secure
+                                                Operational Technology and cloud
+                                                infrastructure, Isaac expertly
+                                                identifies vulnerabilities and
+                                                deploys innovative, resilient
+                                                solutions. His technical prowess
+                                                spans network security,
+                                                configuration, testing,
+                                                troubleshooting, technical
+                                                documentation, incident
+                                                management, and advanced DevOps
+                                                methodologies.
+                                            </p>
+                                            <p>
+                                                With a mastery of security event
+                                                monitoring and incident response
+                                                within the M365 stack, Isaac
+                                                ensures robust protection and
+                                                seamless application deployment
+                                                in multitenant cloud
+                                                architectures. A collaborative
+                                                leader, they thrive in diverse,
+                                                cross-functional teams, driving
+                                                agile, high-performance service
+                                                development while consistently
+                                                meeting project
+                                                deadlines with precision.
+                                            </p>
+                                        </div>
+                                        <div
+                                            class="mt-6 flex justify-center space-x-4">
+                                            <a
+                                                href="#"
+                                                class="text-gray-600 hover:text-gray-800"
+                                                ><i
+                                                    class="fab fa-facebook-f"></i
+                                            ></a>
+                                            <a
+                                                href="#"
+                                                class="text-gray-600 hover:text-gray-800"
+                                                ><i class="fab fa-instagram"></i
+                                            ></a>
+                                            <a
+                                                href="#"
+                                                class="text-gray-600 hover:text-gray-800"
+                                                ><i class="fab fa-skype"></i
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Modal Overlay -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Frequently Asked Questions -->
         <section class="py-10">
             <div
@@ -960,7 +1501,7 @@
                 <div class="mx-auto px-5">
                     <div class="flex flex-col items-center">
                         <h2
-                            class="mt-5 text-center text-3xl font-bold tracking-tight md:text-5xl">
+                            class="mt-5 text-center text-secondary text-3xl font-bold tracking-tight md:text-5xl">
                             FAQ
                         </h2>
                         <p class="mt-3 text-lg text-neutral-500 md:text-xl">
@@ -1205,7 +1746,7 @@
                             class="flex justify-center sm:justify-start border-b border-white mb-5 pb-5">
                             <img
                                 class="w-24"
-                                src="img/logo-nobg.png"
+                                src="img/KONNECTU LOGO WHITE.png"
                                 alt="KonnectU" />
                         </a>
                         <div
@@ -1240,17 +1781,17 @@
                         :class="{ 'transform md:transform-none': !open, 'h-full': open }"
                         class="flex flex-row flex-grow md:items-center md:flex md:justify-end origin-top duration-300 scale-y-0">
                         <a
-                            class="px-4 py-2 mt-2 text-base bg-transparent rounded-lg md:mt-8 md:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
+                            class="px-4 py-2 mt-2 text-base bg-transparent rounded-lg md:mt-8 md:ml-4 text-white hover:text-gray-900 focus:outline-none focus:shadow-outline"
                             href="#"
                             >Home</a
                         >
                         <a
-                            class="px-4 py-2 mt-2 text-base bg-transparent rounded-lg md:mt-8 md:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
+                            class="px-4 py-2 mt-2 text-base bg-transparent rounded-lg md:mt-8 md:ml-4 text-white hover:text-gray-900 focus:outline-none focus:shadow-outline"
                             href="#about-us"
                             >About Us</a
                         >
                         <a
-                            class="px-4 py-2 mt-2 text-base bg-transparent rounded-lg md:mt-8 md:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
+                            class="px-4 py-2 mt-2 text-base bg-transparent rounded-lg md:mt-8 md:ml-4 text-white hover:text-gray-900 focus:outline-none focus:shadow-outline"
                             href="#services"
                             >Services</a
                         >
@@ -1319,5 +1860,7 @@
             AOS.init();
         </script>
         <script src="main.js"></script>
+        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     </body>
 </html>
