@@ -109,8 +109,8 @@ function teamComponent() {
                 ],
                 bio: [
                     "Agboola Shonekan is a dynamic and results-driven construction and engineering professional with over 20 years of practical experience spanning site operations, project supervision, and executive leadership. He began his technical journey with a NABTEB A-Level certification in Brick/Block Laying and Concreting, earning him a Craftsman License (R.2936C) from the Council for the Regulation of Engineering in Nigeria (COREN). Over the years, he advanced from field-level roles to founding and managing multiple businesses, including FixItAll Handyman Multi Services Limited and KonnectU Solutions Limited.",
-                    "Agboola Shonekan is a dynamic and results-driven construction and engineering professional with over 20 years of practical experience spanning site operations, project supervision, and executive leadership. He began his technical journey with a NABTEB A-Level certification in Brick/Block Laying and Concreting, earning him a Craftsman License (R.2936C) from the Council for the Regulation of Engineering in Nigeria (COREN). Over the years, he advanced from field-level roles to founding and managing multiple businesses, including FixItAll Handyman Multi Services Limited and KonnectU Solutions Limited.",
-                    "Agboola Shonekan is a dynamic and results-driven construction and engineering professional with over 20 years of practical experience spanning site operations, project supervision, and executive leadership. He began his technical journey with a NABTEB A-Level certification in Brick/Block Laying and Concreting, earning him a Craftsman License (R.2936C) from the Council for the Regulation of Engineering in Nigeria (COREN). Over the years, he advanced from field-level roles to founding and managing multiple businesses, including FixItAll Handyman Multi Services Limited and KonnectU Solutions Limited.",
+                    "Agboola holds a Bachelor’s Degree in Civil Engineering (Second Class Upper Division) from the University of Abuja, where he developed strong expertise in structural analysis, construction methodologies, and project management. His commitment to professional growth is reflected in his membership with the Nigerian Society of Engineers (NSE) and his designation as an Associate Member of the Ontario Association of Certified Engineering Technicians and Technologists (OACETT) in Canada.",
+                    "As CEO of KonnectU Solutions Limited,  Agboola is focused on revolutionizing how clients connect with skilled professionals. He leverages his extensive engineering background and on-site experience to drive innovation, promote service excellence, and lead digital transformation in the service industry. His mission is to bridge the gap between clients and trusted experts—empowering artisans, consultants, and technicians through smart technology, practical systems, and a deep understanding of real-world challenges. His leadership fosters quality, reliability, and efficiency across every project.",
                 ],
             },
             {
@@ -128,7 +128,7 @@ function teamComponent() {
                 ],
             },
             {
-                name: "Isaac",
+                name: "Isaac Adejuwon",
                 title: "CTO",
                 role: "DevOps Engineer",
                 image: "img/Isaac.jpg",
@@ -144,4 +144,14 @@ function teamComponent() {
             },
         ],
     };
+}
+
+// reCAPTCHA
+function onRecaptchaSubmit(token) {
+    // Add the reCAPTCHA response to the form before submitting
+    var recaptchaResponse = document.createElement("input");
+    recaptchaResponse.setAttribute("type", "hidden");
+    recaptchaResponse.setAttribute("name", "g-recaptcha-response");
+    recaptchaResponse.setAttribute("value", token);
+    document.getElementById("earlySignupForm").appendChild(recaptchaResponse);
 }

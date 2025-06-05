@@ -80,7 +80,7 @@
                         >
                         <button
                             onclick="document.getElementById('signupModal').classList.remove('hidden')"
-                            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded cursor-pointer">
+                            class="bg-yellow-500 text-white px-4 py-2 rounded cursor-pointer">
                             Early Sign Up
                         </button>
                     </nav>
@@ -200,17 +200,24 @@
                             class="w-full px-3 py-2 border border-gray-300 rounded"
                             placeholder="Software Developer" />
                     </div>
+                    <!-- Invisible reCAPTCHA -->
+                    <div
+                        class="g-recaptcha"
+                        data-sitekey="6Lf291YrAAAAAIfhw5tCQkAz42ij_GqfAFZbxw4t"
+                        data-callback="onRecaptchaSubmit"
+                        data-action="submit"
+                        style="display: none"></div>
 
                     <!-- Submit -->
                     <button
                         type="submit"
-                        class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded font-semibold cursor-pointer">
+                        class="w-full bg-yellow-500 text-white py-2 rounded font-semibold cursor-pointer">
                         Submit
                     </button>
                     <!-- Success Message -->
                     <div
                         id="signupSuccessMessage"
-                        class="hidden opacity-0 transition-opacity duration-700 mt-4 flex justify-between items-center bg-green-100 text-green-700 px-4 py-2 rounded shadow text-sm font-medium">
+                        class="hidden opacity-0 transition-opacity duration-700 mt-4 flex justify-between items-center bg-yellow-500 text-green-700 px-4 py-2 rounded shadow text-sm font-medium">
                         <span
                             >✅ Thank you! Your sign-up has been received.</span
                         >
@@ -336,7 +343,8 @@
         </section>
 
         <!-- All-In-One Service Application. -->
-        <section class="container mx-auto px-8 py-12">
+        <section
+            class="container flex flex-col items-center mx-auto px-8 py-12">
             <div data-aos="flip-up" class="max-w-xl mx-auto text-center">
                 <h1 class="font-bold text-secondary text-2xl">
                     All-In-One
@@ -422,13 +430,11 @@
                     </p>
                 </div>
             </div>
-            <div class="flex mx-auto justify-center">
-                <a
-                    class="px-10 py-3 mt-4 text-sm text-center bg-yellow-500 bg-hover text-white rounded-md md:mt-8 md:ml-4"
-                    href="https://www.konnectusolutions.com/"
-                    >Get Started</a
-                >
-            </div>
+            <button
+                onclick="document.getElementById('signupModal').classList.remove('hidden')"
+                class="bg-yellow-500 hover:bg-green-700 text-white px-4 py-2 rounded text-center cursor-pointer mt-8">
+                Early Sign Up
+            </button>
         </section>
 
         <!-- About -->
@@ -494,8 +500,9 @@
                                 Service Provider
                             </h2>
                             <button
+                                onclick="document.getElementById('signupModal').classList.remove('hidden')"
                                 class="w-full bg-yellow-500 hover:bg-green-700 text-white py-3 text-sm font-semibold transition-transform transform hover:scale-105 rounded-b-2xl cursor-pointer">
-                                Apply Now
+                                Early Sign Up
                             </button>
                         </div>
                     </div>
@@ -920,13 +927,11 @@
                             artisans, contractors, engineers, and service
                             providers across various trades.
                         </p>
+
                         <button
-                            class="my-4 focus:outline-none transform transition hover:scale-110 duration-300 ease-in-out rounded-full">
-                            <a
-                                class="px-10 py-3 mt-2 text-sm text-center bg-yellow-500 bg-hover text-white rounded-md md:mt-8 md:ml-4"
-                                href="https://www.konnectusolutions.com/"
-                                >Get Started</a
-                            >
+                            onclick="document.getElementById('signupModal').classList.remove('hidden')"
+                            class="my-4 focus:outline-none transform transition hover:scale-110 duration-300 ease-in-out px-10 py-3 mt-2 text-sm text-center rounded-md md:mt-8 md:ml-4 bg-yellow-500 text-white">
+                            Early Sign Up
                         </button>
                     </div>
                 </div>
@@ -1615,6 +1620,10 @@
         <script src="main.js"></script>
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+        <script
+            src="https://www.google.com/recaptcha/api.js"
+            async
+            defer></script>
 
         <!-- HIDDEN IFRAME -->
         <iframe
