@@ -157,79 +157,9 @@ function onRecaptchaSubmit(token) {
 }
 
 // Handle Form Submission
-function handleFormSubmit(event) {
-    event.preventDefault();
+// function handleFormSubmit(event) {
+//     event.preventDefault();
 
-    // Ensure that reCAPTCHA is checked before form submission
-    var recaptchaResponse = document.getElementById(
-        "g-recaptcha-response"
-    ).value;
-    if (!recaptchaResponse) {
-        alert("Please verify that you are not a robot.");
-        return false; // Prevent form submission if reCAPTCHA is not checked
-    }
-
-    // Get the form data
-    var form = document.getElementById("earlySignupForm");
-    var formData = new FormData(form);
-
-    // Send the form data to Google Apps Script
-    fetch(
-        "https://script.google.com/macros/s/AKfycbxOELSjFwM7PzpDcp9GHnAiRvtLZq8KFGQhnh5nyGzo8qmA3ew2ItDEkdcAe2fVqt-mzA/exec",
-        {
-            method: "POST",
-            body: formData,
-        }
-    )
-        .then((response) => response.json())
-        .then((data) => {
-            // Handle success (email verification and other actions)
-            alert(
-                "Form submitted successfully! Please check your email to verify."
-            );
-        })
-        .catch((error) => {
-            alert("There was an error submitting the form. Please try again.");
-            console.error(error);
-        });
-
-    return false; // Prevent traditional form submission
-}
-
-// Example for email verification - Simulate the email verification link.
-const urlParams = new URLSearchParams(window.location.search);
-const codeFromUrl = urlParams.get("code"); // Get code from URL
-
-const storedCode = "w3ymfvsxwjs"; // Replace with actual stored code (e.g., from Google Sheets)
-
-if (codeFromUrl) {
-    document.getElementById("message").innerHTML = `
-      <p class="text-center text-gray-600">Email verification link received. Please enter the code below to verify your email.</p>
-      <div class="mb-4">
-        <input type="text" id="verificationCode" placeholder="Enter your verification code" required
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800">
-      </div>
-      <button onclick="verifyEmail()" class="w-full bg-blue-500 text-white py-2 rounded-md font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-        Verify Email
-      </button>
-    `;
-}
-
-// Verify Email Logic
-function verifyEmail() {
-    const userCode = document.getElementById("verificationCode").value;
-    if (userCode === storedCode) {
-        document.getElementById(
-            "message"
-        ).innerHTML = `<div class="bg-green-500 text-white p-3 rounded-md text-center">Your email has been successfully verified!</div>`;
-    } else {
-        document.getElementById(
-            "message"
-        ).innerHTML = `<div class="bg-red-500 text-white p-3 rounded-md text-center">Invalid verification code. Please try again.</div>`;
-    }
-}
-// New approach
-// function handleFormSubmit() {
 //     // Ensure that reCAPTCHA is checked before form submission
 //     var recaptchaResponse = document.getElementById(
 //         "g-recaptcha-response"
@@ -257,13 +187,83 @@ function verifyEmail() {
 //             alert(
 //                 "Form submitted successfully! Please check your email to verify."
 //             );
-//             // Optionally, redirect to a success page
 //         })
 //         .catch((error) => {
 //             alert("There was an error submitting the form. Please try again.");
 //             console.error(error);
 //         });
 
-//     // Return false to prevent default form submission, since we are handling it via JavaScript
-//     return false;
+//     return false; // Prevent traditional form submission
 // }
+
+// // Example for email verification - Simulate the email verification link.
+// const urlParams = new URLSearchParams(window.location.search);
+// const codeFromUrl = urlParams.get("code"); // Get code from URL
+
+// const storedCode = "w3ymfvsxwjs"; // Replace with actual stored code (e.g., from Google Sheets)
+
+// if (codeFromUrl) {
+//     document.getElementById("message").innerHTML = `
+//       <p class="text-center text-gray-600">Email verification link received. Please enter the code below to verify your email.</p>
+//       <div class="mb-4">
+//         <input type="text" id="verificationCode" placeholder="Enter your verification code" required
+//           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800">
+//       </div>
+//       <button onclick="verifyEmail()" class="w-full bg-blue-500 text-white py-2 rounded-md font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+//         Verify Email
+//       </button>
+//     `;
+// }
+
+// // Verify Email Logic
+// function verifyEmail() {
+//     const userCode = document.getElementById("verificationCode").value;
+//     if (userCode === storedCode) {
+//         document.getElementById(
+//             "message"
+//         ).innerHTML = `<div class="bg-green-500 text-white p-3 rounded-md text-center">Your email has been successfully verified!</div>`;
+//     } else {
+//         document.getElementById(
+//             "message"
+//         ).innerHTML = `<div class="bg-red-500 text-white p-3 rounded-md text-center">Invalid verification code. Please try again.</div>`;
+//     }
+// }
+// New approach
+function handleFormSubmit() {
+    // Ensure that reCAPTCHA is checked before form submission
+    var recaptchaResponse = document.getElementById(
+        "g-recaptcha-response"
+    ).value;
+    if (!recaptchaResponse) {
+        alert("Please verify that you are not a robot.");
+        return false; // Prevent form submission if reCAPTCHA is not checked
+    }
+
+    // Get the form data
+    var form = document.getElementById("earlySignupForm");
+    var formData = new FormData(form);
+
+    // Send the form data to Google Apps Script
+    fetch(
+        "https://script.google.com/macros/s/AKfycbxOELSjFwM7PzpDcp9GHnAiRvtLZq8KFGQhnh5nyGzo8qmA3ew2ItDEkdcAe2fVqt-mzA/exec",
+        {
+            method: "POST",
+            body: formData,
+        }
+    )
+        .then((response) => response.json())
+        .then((data) => {
+            // Handle success (email verification and other actions)
+            alert(
+                "Form submitted successfully! Please check your email to verify."
+            );
+            // Optionally, redirect to a success page
+        })
+        .catch((error) => {
+            alert("There was an error submitting the form. Please try again.");
+            console.error(error);
+        });
+
+    // Return false to prevent default form submission, since we are handling it via JavaScript
+    return false;
+}
