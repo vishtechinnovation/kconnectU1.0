@@ -24,73 +24,73 @@ if (toTopButton) {
     };
 }
 
-function validateSignupForm() {
-    const inputs = document.querySelectorAll("#signupModal input");
-    const maliciousPattern =
-        /(<|>|script|onerror|onload|alert|SELECT|INSERT|DELETE|DROP|;)/i;
+// function validateSignupForm() {
+//     const inputs = document.querySelectorAll("#signupModal input");
+//     const maliciousPattern =
+//         /(<|>|script|onerror|onload|alert|SELECT|INSERT|DELETE|DROP|;)/i;
 
-    for (const input of inputs) {
-        if (maliciousPattern.test(input.value)) {
-            alert(
-                "Invalid input detected. Please avoid using special characters or code."
-            );
-            return false;
-        }
-    }
+//     for (const input of inputs) {
+//         if (maliciousPattern.test(input.value)) {
+//             alert(
+//                 "Invalid input detected. Please avoid using special characters or code."
+//             );
+//             return false;
+//         }
+//     }
 
-    alert(
-        "Thank you for signing up! Please check your email for confirmation."
-    );
-    return true;
-}
+//     alert(
+//         "Thank you for signing up! Please check your email for confirmation."
+//     );
+//     return true;
+// }
 
-// Submission Trigger
-let submitted = false;
+// // Submission Trigger
+// let submitted = false;
 
-function openSignupModal() {
-    document.getElementById("signupModal").classList.remove("hidden");
-    document.body.classList.add("overflow-hidden");
-}
+// function openSignupModal() {
+//     document.getElementById("signupModal").classList.remove("hidden");
+//     document.body.classList.add("overflow-hidden");
+// }
 
-function closeSignupModal() {
-    document.getElementById("signupModal").classList.add("hidden");
-    document.body.classList.remove("overflow-hidden");
-}
+// function closeSignupModal() {
+//     document.getElementById("signupModal").classList.add("hidden");
+//     document.body.classList.remove("overflow-hidden");
+// }
 
-function closeModal(e) {
-    if (e.target.id === "signupModal") {
-        closeSignupModal();
-    }
-}
+// function closeModal(e) {
+//     if (e.target.id === "signupModal") {
+//         closeSignupModal();
+//     }
+// }
 
-function validateSignupForm() {
-    submitted = true;
-    return true;
-}
+// function validateSignupForm() {
+//     submitted = true;
+//     return true;
+// }
 
-function formSubmitted() {
-    const form = document.getElementById("earlySignupForm");
-    const successMsg = document.getElementById("signupSuccessMessage");
+// function formSubmitted() {
+//     const form = document.getElementById("earlySignupForm");
+//     const successMsg = document.getElementById("signupSuccessMessage");
 
-    form.reset();
+//     form.reset();
 
-    // Show success message with fade-in
-    successMsg.classList.remove("hidden");
-    setTimeout(() => {
-        successMsg.classList.add("opacity-100");
-    }, 50);
+//     // Show success message with fade-in
+//     successMsg.classList.remove("hidden");
+//     setTimeout(() => {
+//         successMsg.classList.add("opacity-100");
+//     }, 50);
 
-    // Auto-hide and reload after 5s
-    setTimeout(() => {
-        successMsg.classList.remove("opacity-100");
-        setTimeout(() => {
-            successMsg.classList.add("hidden");
-            location.reload(); // ✅ Reload after fade-out
-        }, 700);
-    }, 5000);
+//     // Auto-hide and reload after 5s
+//     setTimeout(() => {
+//         successMsg.classList.remove("opacity-100");
+//         setTimeout(() => {
+//             successMsg.classList.add("hidden");
+//             location.reload(); // ✅ Reload after fade-out
+//         }, 700);
+//     }, 5000);
 
-    submitted = false;
-}
+//     submitted = false;
+// }
 
 // Team Component
 
@@ -144,16 +144,6 @@ function teamComponent() {
             },
         ],
     };
-}
-
-// reCAPTCHA
-function onRecaptchaSubmit(token) {
-    // Add the reCAPTCHA response to the form before submitting
-    var recaptchaResponse = document.createElement("input");
-    recaptchaResponse.setAttribute("type", "hidden");
-    recaptchaResponse.setAttribute("name", "g-recaptcha-response");
-    recaptchaResponse.setAttribute("value", token);
-    document.getElementById("earlySignupForm").appendChild(recaptchaResponse);
 }
 
 // Handle Form Submission
