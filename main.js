@@ -172,10 +172,13 @@ function handleFormSubmit() {
     var formData = new FormData(form);
 
     // Send the form data to Google Apps Script
-    fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
-        method: "POST",
-        body: formData,
-    })
+    fetch(
+        "https://script.google.com/macros/s/AKfycbxOELSjFwM7PzpDcp9GHnAiRvtLZq8KFGQhnh5nyGzo8qmA3ew2ItDEkdcAe2fVqt-mzA/exec",
+        {
+            method: "POST",
+            body: formData,
+        }
+    )
         .then((response) => response.json())
         .then((data) => {
             // Handle success (email verification and other actions)
