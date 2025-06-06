@@ -155,3 +155,40 @@ function onRecaptchaSubmit(token) {
     recaptchaResponse.setAttribute("value", token);
     document.getElementById("earlySignupForm").appendChild(recaptchaResponse);
 }
+
+// New approach
+function handleFormSubmit() {
+    // Ensure that reCAPTCHA is checked before form submission
+    var recaptchaResponse = document.getElementById(
+        "g-recaptcha-response"
+    ).value;
+    if (!recaptchaResponse) {
+        alert("Please verify that you are not a robot.");
+        return false; // Prevent form submission if reCAPTCHA is not checked
+    }
+
+    // Get the form data
+    var form = document.getElementById("earlySignupForm");
+    var formData = new FormData(form);
+
+    // Send the form data to Google Apps Script
+    fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+        method: "POST",
+        body: formData,
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            // Handle success (email verification and other actions)
+            alert(
+                "Form submitted successfully! Please check your email to verify."
+            );
+            // Optionally, redirect to a success page
+        })
+        .catch((error) => {
+            alert("There was an error submitting the form. Please try again.");
+            console.error(error);
+        });
+
+    // Return false to prevent default form submission, since we are handling it via JavaScript
+    return false;
+}
