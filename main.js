@@ -268,21 +268,3 @@ function handleFormSubmit() {
     // Return false to prevent default form submission, since we are handling it via JavaScript
     return false;
 }
-
-// Get the 'code' parameter from the URL
-const urlParams = new URLSearchParams(window.location.search);
-const codeFromUrl = urlParams.get("code"); // Get code from URL
-
-// Send the 'code' to the Google Apps Script endpoint for verification
-fetch(
-    `https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec?code=${codeFromUrl}`
-)
-    .then((response) => response.text())
-    .then((data) => {
-        // Display the result based on the response from Google Apps Script
-        document.getElementById("message").innerHTML = data;
-    })
-    .catch((error) => {
-        document.getElementById("message").innerHTML =
-            "Error verifying the code.";
-    });

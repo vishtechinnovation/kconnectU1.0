@@ -63,12 +63,26 @@
         <script>
             AOS.init();
         </script>
-        <script src="main.js"></script>
+        <script>
+            // Get the 'code' parameter from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const codeFromUrl = urlParams.get("code"); // Get code from URL
+
+            // Send the 'code' to the Google Apps Script endpoint for verification
+            fetch(
+                `https://script.google.com/macros/s/AKfycbxOELSjFwM7PzpDcp9GHnAiRvtLZq8KFGQhnh5nyGzo8qmA3ew2ItDEkdcAe2fVqt-mzA/exec?code=${codeFromUrl}`
+            )
+                .then((response) => response.text())
+                .then((data) => {
+                    // Display the result based on the response from Google Apps Script
+                    document.getElementById("message").innerHTML = data;
+                })
+                .catch((error) => {
+                    document.getElementById("message").innerHTML =
+                        "Error verifying the code.";
+                });
+        </script>
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-        <script
-            src="https://www.google.com/recaptcha/api.js"
-            async
-            defer></script>
     </body>
 </html>
