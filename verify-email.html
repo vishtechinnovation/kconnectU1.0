@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>KonnectU Solutions</title>
+        <!-- Tailwind -->
+        <link href="src/output.css" rel="stylesheet" />
+        <!-- <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet" /> -->
+        <!-- Alpine -->
+        <script
+            defer
+            src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+        <!-- AOS -->
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <!-- Custom style -->
+        <link rel="stylesheet" href="css/styles.css" />
+        <!-- Poppins font -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+            rel="stylesheet" />
+        <!-- Favicon -->
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="favicon_io/apple-touch-icon.png" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="favicon_io/favicon-32x32.png" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="favicon_io/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+
+        <!-- Fontawesome Icons -->
+        <script
+            src="https://kit.fontawesome.com/2be225141f.js"
+            crossorigin="anonymous"></script>
+    </head>
+    <body class="bg-gray-100 flex justify-center items-center h-screen">
+        <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md mx-4">
+            <h1 class="text-2xl font-semibold text-gray-800 mb-4 text-center">
+                Email Verification
+            </h1>
+            <p class="text-gray-600 text-center mb-6">
+                Please enter the verification code sent to your email.
+            </p>
+
+            <!-- Verification Form -->
+            <div id="message"></div>
+        </div>
+
+        <!-- AOS init -->
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
+        <script src="main.js"></script>
+        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+        <script
+            src="https://www.google.com/recaptcha/api.js"
+            async
+            defer></script>
+    </body>
+</html>
