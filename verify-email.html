@@ -58,15 +58,9 @@
             <div id="message" class="text-center text-gray-600"></div>
         </div>
 
-        <!-- AOS init -->
-        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
         <script>
-            AOS.init();
-        </script>
-        <script>
-            // Get the 'code' parameter from the URL
             const urlParams = new URLSearchParams(window.location.search);
-            const codeFromUrl = urlParams.get("code"); // Get code from URL
+            const codeFromUrl = urlParams.get("code"); // Get the 'code' from URL
 
             // Send the 'code' to the Google Apps Script endpoint for verification
             fetch(
@@ -76,13 +70,59 @@
                 .then((data) => {
                     // Display the result based on the response from Google Apps Script
                     document.getElementById("message").innerHTML = data;
+
+                    // If the verification is successful, send the data to Google Forms
+                    if (
+                        data.includes(
+                            "Your email has been successfully verified"
+                        )
+                    ) {
+                        // Submit the form data to Google Forms
+                        submitFormDataToGoogleForms();
+                    }
                 })
                 .catch((error) => {
                     document.getElementById("message").innerHTML =
                         "Error verifying the code.";
+                    console.error(error);
                 });
+
+            function submitFormDataToGoogleForms() {
+                // Retrieve the form data (you should already have this in some way)
+                const formData = {
+                    firstName: "John",
+                    lastName: "Doe",
+                    email: "johndoe@example.com",
+                    phone: "+2348123456789",
+                    location: "Lagos, Nigeria",
+                    profession: "Software Developer",
+                };
+
+                const formUrl =
+                    "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdrkRnL6L05367s0bYG6WJimzEsmDH7hHcOaZHiozdZCPbCTQ/formResponse";
+                const payload = {
+                    "entry.137930516": formData.firstName,
+                    "entry.365860481": formData.lastName,
+                    "entry.1596585368": formData.email,
+                    "entry.1599107456": formData.phone,
+                    "entry.344818518": formData.location,
+                    "entry.1088893444": formData.profession,
+                };
+
+                const options = {
+                    method: "post",
+                    payload: payload,
+                };
+
+                fetch(formUrl, options)
+                    .then((response) => response.text())
+                    .then(() => {
+                        setTimeout(() => {
+                            window.location.href =
+                                "https://kconnect-u1-0.vercel.app/"; // Redirect to homepage
+                        }, 3000); // Redirect after 3 seconds
+                    });
+            }
         </script>
-        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     </body>
 </html>

@@ -245,7 +245,7 @@ function handleFormSubmit() {
         .then((data) => {
             // Handle success (email verification and other actions)
             alert(
-                "Form submitted successfully! Please check your email to verify."
+                "Please check your email to verify and complete your submission."
             );
             // Reload the page after submission
             location.reload(); // This reloads the current page
