@@ -160,7 +160,7 @@ function handleFormSubmit() {
     formData.append("g-recaptcha-response", grecaptcha.getResponse()); // Add reCAPTCHA response
 
     fetch(
-        "https://script.google.com/macros/s/AKfycbxOELSjFwM7PzpDcp9GHnAiRvtLZq8KFGQhnh5nyGzo8qmA3ew2ItDEkdcAe2fVqt-mzA/exec",
+        "https://script.google.com/macros/s/AKfycbz36Zbagcia9HzOC_vn4xi_wA43lon6vmD6U7DrNzX1VgcTNcqaAZIKP2d6DUcBj9DmCg/exec",
         {
             method: "POST",
             body: formData,
@@ -199,7 +199,7 @@ window.onload = function () {
         // Fetch the token data from your backend here to verify and display the details
         // For example, you could make a request to your Apps Script to check if the token is valid
         fetch(
-            `https://script.google.com/macros/s/AKfycbxOELSjFwM7PzpDcp9GHnAiRvtLZq8KFGQhnh5nyGzo8qmA3ew2ItDEkdcAe2fVqt-mzA/exec?token=${token}`
+            `https://script.google.com/macros/s/AKfycbz36Zbagcia9HzOC_vn4xi_wA43lon6vmD6U7DrNzX1VgcTNcqaAZIKP2d6DUcBj9DmCg/exec?token=${token}`
         )
             .then((response) => response.json())
             .then((data) => {
