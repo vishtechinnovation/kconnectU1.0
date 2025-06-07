@@ -156,14 +156,30 @@ document
 
 // Submit form data to Apps Script
 function handleFormSubmit() {
-    let formData = new FormData(document.getElementById("dynamicForm"));
-    formData.append("g-recaptcha-response", grecaptcha.getResponse()); // Add reCAPTCHA response
+    let formData = {
+        firstName: document.getElementById("firstName").value,
+        lastName: document.getElementById("lastName").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        location: document.getElementById("location").value,
+        profession: document.getElementById("profession").value,
+        "g-recaptcha-response": grecaptcha.getResponse(), // Add reCAPTCHA response
+    };
 
+    // Ensure reCAPTCHA is validated
+    if (!grecaptcha.getResponse()) {
+        alert("Please verify you're not a robot.");
+        return;
+    }
+    // Send the form data as JSON in the POST request
     fetch(
         "https://script.google.com/macros/s/AKfycbz36Zbagcia9HzOC_vn4xi_wA43lon6vmD6U7DrNzX1VgcTNcqaAZIKP2d6DUcBj9DmCg/exec",
         {
             method: "POST",
-            body: formData,
+            headers: {
+                "Content-Type": "application/json", // Send the data as JSON
+            },
+            body: JSON.stringify(formData), // Convert the form data into a JSON string
         }
     )
         .then((response) => response.json())
@@ -199,7 +215,13 @@ window.onload = function () {
         // Fetch the token data from your backend here to verify and display the details
         // For example, you could make a request to your Apps Script to check if the token is valid
         fetch(
-            `https://script.google.com/macros/s/AKfycbz36Zbagcia9HzOC_vn4xi_wA43lon6vmD6U7DrNzX1VgcTNcqaAZIKP2d6DUcBj9DmCg/exec?token=${token}`
+            "https://script.google.com/macros/s/AKfycbz36Zbagcia9HzOC_vn4xi_wA43lon6vmD6U7DrNzX1VgcTNcqaAZIKP2d6DUcBj9DmCg/exec?token=${token}",
+            {
+                method: "GET", // Ensure the correct method (GET for token verification)
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
         )
             .then((response) => response.json())
             .then((data) => {
