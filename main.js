@@ -219,7 +219,7 @@ function teamComponent() {
 //     }
 // }
 // New approach
-function handleFormSubmit() {
+function handleFormSubmit(event) {
     // Ensure that reCAPTCHA is checked before form submission
     var recaptchaResponse = document.getElementById(
         "g-recaptcha-response"
@@ -229,11 +229,14 @@ function handleFormSubmit() {
         return false; // Prevent form submission if reCAPTCHA is not checked
     }
 
+    // Prevent the form submission (we'll handle this with fetch)
+    event.preventDefault();
+
     // Get the form data
     var form = document.getElementById("earlySignupForm");
     var formData = new FormData(form);
 
-    // Send the form data to Google Apps Script
+    // Send the form data to Google Apps Script to store temporarily (not yet submitted to Google Forms)
     fetch(
         "https://script.google.com/macros/s/AKfycbxOELSjFwM7PzpDcp9GHnAiRvtLZq8KFGQhnh5nyGzo8qmA3ew2ItDEkdcAe2fVqt-mzA/exec",
         {
@@ -243,18 +246,16 @@ function handleFormSubmit() {
     )
         .then((response) => response.json())
         .then((data) => {
-            // Handle success (email verification and other actions)
+            // Handle success: Email verification sent, and data stored temporarily
             alert(
                 "Please check your email to verify and complete your submission."
             );
-            // Reload the page after submission
-            location.reload(); // This reloads the current page
+            location.reload(); // This reloads the current page after the process
         })
         .catch((error) => {
             alert("There was an error submitting the form. Please try again.");
             console.error(error);
         });
 
-    // Return false to prevent default form submission, since we are handling it via JavaScript
-    return false;
+    return false; // Return false to prevent the form from submitting traditionally
 }
