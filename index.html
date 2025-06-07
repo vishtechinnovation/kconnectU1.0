@@ -129,8 +129,7 @@
                     Early Sign Up
                 </h2>
 
-                <form id="dynamicForm" class="space-y-6">
-                    <!-- Form Fields -->
+                <form id="dynamicForm" class="space-y-4">
                     <input
                         type="text"
                         id="firstName"
@@ -164,38 +163,35 @@
                     <input
                         type="text"
                         id="profession"
-                        placeholder="What's your profession?"
+                        placeholder="What is your profession?"
                         class="w-full p-3 border rounded-md"
                         required />
 
-                    <!-- Google reCAPTCHA -->
                     <div
                         class="g-recaptcha"
                         data-sitekey="6Lf291YrAAAAAIfhw5tCQkAz42ij_GqfAFZbxw4t"></div>
 
-                    <div class="flex justify-center">
-                        <button
-                            type="submit"
-                            class="w-full bg-yellow-500 text-white py-3 rounded-md cursor-pointer">
-                            Submit
-                        </button>
-                    </div>
+                    <button
+                        type="submit"
+                        class="w-full bg-yellow-500 text-white py-3 rounded-md cursor-pointe">
+                        Submit
+                    </button>
                 </form>
+            </div>
 
-                <!-- Modal Section: Email Verification Overlay -->
-                <div
-                    id="verificationModal"
-                    class="modal hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-                    <div class="bg-white p-8 rounded-lg">
-                        <h2 class="text-2xl font-bold">Success!</h2>
-                        <p class="mt-4">
-                            Your email has been successfully verified!
-                        </p>
-                        <p class="mt-4">Here are the details you submitted:</p>
-                        <p id="submittedDetails" class="mt-2"></p>
+            <!-- Modal Card for Verification Success -->
+            <div
+                id="verificationModal"
+                class="modal hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+                <div class="bg-white p-8 rounded-lg text-center">
+                    <h2 class="text-2xl font-bold">Success!</h2>
+                    <p class="mt-4">
+                        Your email has been successfully verified!
+                    </p>
+                    <div class="mt-4">
                         <button
                             id="closeModal"
-                            class="mt-4 bg-green-600 text-white p-2 rounded">
+                            class="bg-green-600 text-white py-2 px-4 rounded-md">
                             Close
                         </button>
                     </div>

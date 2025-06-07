@@ -147,91 +147,186 @@ function teamComponent() {
 }
 
 // Handle form submission
+// document
+//     .getElementById("dynamicForm")
+//     .addEventListener("submit", function (event) {
+//         event.preventDefault();
+//         handleFormSubmit();
+//     });
+
+// // Submit form data to Apps Script
+// function handleFormSubmit() {
+//     let formData = {
+//         firstName: document.getElementById("firstName").value,
+//         lastName: document.getElementById("lastName").value,
+//         email: document.getElementById("email").value,
+//         phone: document.getElementById("phone").value,
+//         location: document.getElementById("location").value,
+//         profession: document.getElementById("profession").value,
+//         "g-recaptcha-response": grecaptcha.getResponse(), // Add reCAPTCHA response
+//     };
+
+//     // Ensure reCAPTCHA is validated
+//     if (!grecaptcha.getResponse()) {
+//         alert("Please verify you're not a robot.");
+//         return;
+//     }
+//     // Send the form data as JSON in the POST request
+//     fetch(
+//         "https://script.google.com/macros/s/AKfycbz36Zbagcia9HzOC_vn4xi_wA43lon6vmD6U7DrNzX1VgcTNcqaAZIKP2d6DUcBj9DmCg/exec",
+//         {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json", // Send the data as JSON
+//             },
+//             body: JSON.stringify(formData), // Convert the form data into a JSON string
+//         }
+//     )
+//         .then((response) => response.json())
+//         .then((data) => {
+//             if (data.success) {
+//                 alert(
+//                     "Form submitted successfully! Please check your email for verification."
+//                 );
+//             } else {
+//                 alert("There was an error. Please try again.");
+//             }
+//         })
+//         .catch((error) => alert("Error: " + error));
+// }
+
+// // Show the verification modal on successful verification
+// function showVerificationModal(submittedDetails) {
+//     document.getElementById("submittedDetails").textContent = submittedDetails;
+//     document.getElementById("verificationModal").classList.remove("hidden");
+// }
+
+// // Close the verification modal and reload the page
+// document.getElementById("closeModal").addEventListener("click", function () {
+//     window.location.reload(); // Reload the homepage after verification
+// });
+
+// // Check the URL for a token and show the verification modal
+// window.onload = function () {
+//     const urlParams = new URLSearchParams(window.location.search);
+//     const token = urlParams.get("token");
+
+//     if (token) {
+//         // Fetch the token data from your backend here to verify and display the details
+//         // For example, you could make a request to your Apps Script to check if the token is valid
+//         fetch(
+//             "https://script.google.com/macros/s/AKfycbz36Zbagcia9HzOC_vn4xi_wA43lon6vmD6U7DrNzX1VgcTNcqaAZIKP2d6DUcBj9DmCg/exec?token=${token}",
+//             {
+//                 method: "GET", // Ensure the correct method (GET for token verification)
+//                 headers: {
+//                     "Content-Type": "application/json",
+//                 },
+//             }
+//         )
+//             .then((response) => response.json())
+//             .then((data) => {
+//                 if (data.success) {
+//                     // If verification is successful, show the modal and the submitted details
+//                     showVerificationModal(data.submittedDetails);
+//                 } else {
+//                     alert("Invalid or expired token.");
+//                 }
+//             })
+//             .catch((error) => console.error("Error verifying token:", error));
+//     }
+// };
+
+// Form submission handler
 document
     .getElementById("dynamicForm")
     .addEventListener("submit", function (event) {
-        event.preventDefault();
-        handleFormSubmit();
-    });
+        event.preventDefault(); // Prevent form from submitting normally
 
-// Submit form data to Apps Script
-function handleFormSubmit() {
-    let formData = {
-        firstName: document.getElementById("firstName").value,
-        lastName: document.getElementById("lastName").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        location: document.getElementById("location").value,
-        profession: document.getElementById("profession").value,
-        "g-recaptcha-response": grecaptcha.getResponse(), // Add reCAPTCHA response
-    };
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value;
+        const location = document.getElementById("location").value;
+        const profession = document.getElementById("profession").value;
+        const recaptchaResponse = grecaptcha.getResponse();
 
-    // Ensure reCAPTCHA is validated
-    if (!grecaptcha.getResponse()) {
-        alert("Please verify you're not a robot.");
-        return;
-    }
-    // Send the form data as JSON in the POST request
-    fetch(
-        "https://script.google.com/macros/s/AKfycbz36Zbagcia9HzOC_vn4xi_wA43lon6vmD6U7DrNzX1VgcTNcqaAZIKP2d6DUcBj9DmCg/exec",
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json", // Send the data as JSON
-            },
-            body: JSON.stringify(formData), // Convert the form data into a JSON string
+        // Email Validation using regex
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address.");
+            return; // Stop submission
         }
-    )
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success) {
-                alert(
-                    "Form submitted successfully! Please check your email for verification."
-                );
-            } else {
-                alert("There was an error. Please try again.");
-            }
+
+        // Phone Validation using regex (matches US phone format, adjust regex for your locale if necessary)
+        const phoneRegex = /^[0-9]{10}$/; // Simple 10-digit phone validation
+        if (!phoneRegex.test(phone)) {
+            alert("Please enter a valid phone number (10 digits).");
+            return; // Stop submission
+        }
+
+        const formData = {
+            firstName,
+            lastName,
+            email,
+            phone,
+            location,
+            profession,
+            "g-recaptcha-response": recaptchaResponse,
+        };
+
+        // Send form data to the backend
+        fetch("https://kconnect-u1-0.vercel.app/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
         })
-        .catch((error) => alert("Error: " + error));
-}
-
-// Show the verification modal on successful verification
-function showVerificationModal(submittedDetails) {
-    document.getElementById("submittedDetails").textContent = submittedDetails;
-    document.getElementById("verificationModal").classList.remove("hidden");
-}
-
-// Close the verification modal and reload the page
-document.getElementById("closeModal").addEventListener("click", function () {
-    window.location.reload(); // Reload the homepage after verification
-});
-
-// Check the URL for a token and show the verification modal
-window.onload = function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get("token");
-
-    if (token) {
-        // Fetch the token data from your backend here to verify and display the details
-        // For example, you could make a request to your Apps Script to check if the token is valid
-        fetch(
-            "https://script.google.com/macros/s/AKfycbz36Zbagcia9HzOC_vn4xi_wA43lon6vmD6U7DrNzX1VgcTNcqaAZIKP2d6DUcBj9DmCg/exec?token=${token}",
-            {
-                method: "GET", // Ensure the correct method (GET for token verification)
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        )
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
-                    // If verification is successful, show the modal and the submitted details
-                    showVerificationModal(data.submittedDetails);
+                    alert(
+                        "Form submitted successfully! Please check your email for verification."
+                    );
+                    window.location.reload(); // Reload the page
                 } else {
-                    alert("Invalid or expired token.");
+                    alert("Error: " + data.message);
                 }
             })
-            .catch((error) => console.error("Error verifying token:", error));
-    }
-};
+            .catch((error) => {
+                alert("Error: " + error);
+            });
+    });
+
+// Handle modal verification response
+const urlParams = new URLSearchParams(window.location.search);
+const token = urlParams.get("token");
+
+if (token) {
+    // Call backend to verify the token
+    fetch(`https://kconnect-u1-0.vercel.app/verify?token=${token}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                // Show success modal
+                document
+                    .getElementById("verificationModal")
+                    .classList.remove("hidden");
+
+                // Auto-reload after 5 seconds
+                setTimeout(function () {
+                    window.location.reload();
+                }, 5000);
+            } else {
+                alert("Invalid or expired token.");
+            }
+        })
+        .catch((error) => console.error("Error verifying token:", error));
+}
+
+// Close modal manually
+document.getElementById("closeModal").addEventListener("click", function () {
+    document.getElementById("verificationModal").classList.add("hidden");
+    window.location.reload(); // Reload the page after closing the modal
+});

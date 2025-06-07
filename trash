@@ -156,4 +156,103 @@ temporarily alert( "Please check your email to verify and complete your
 submission." ); location.reload(); // This reloads the current page after the
 process }) .catch((error) => { alert("There was an error submitting the form.
 Please try again."); console.error(error); }); return false; // Return false to
-prevent the form from submitting traditionally }
+prevent the form from submitting traditionally } //
+---------------------------------------------------------------------- function
+doGet(e) { const codeFromUrl = e.parameter.code; // Get code from URL const
+sheet =
+SpreadsheetApp.getActiveSpreadsheet().getSheetByName('VerificationCodes'); const
+data = sheet.getDataRange().getValues(); // Check if the code exists in the
+Google Sheets let isValidCode = false; for (let i = 0; i < data.length; i++) {
+if (data[i][1] === codeFromUrl) { // Assuming the second column has the stored
+verification code isValidCode = true; break; } } if (isValidCode) { // If the
+code is valid, return a success HTML message return
+HtmlService.createHtmlOutput(`
+<html>
+    <head>
+        <title>Email Verified</title>
+    </head>
+    <body>
+        <h2>Your email has been successfully verified!</h2>
+        <p>You will be redirected to the homepage shortly.</p>
+        <script>
+            setTimeout(function () {
+                window.location.href = "https://kconnect-u1-0.vercel.app/"; // Redirect to homepage
+            }, 3000); // 3 seconds delay before redirecting
+        </script>
+    </body>
+</html>
+`); } else { // If the code is invalid, return an error message return
+HtmlService.createHtmlOutput(`
+<html>
+    <head>
+        <title>Invalid Code</title>
+    </head>
+    <body>
+        <h2>Invalid or Expired Verification Code</h2>
+        <p>Please try again.</p>
+    </body>
+</html>
+`); } } function doPost(e) { const responses = e.parameter; // Extract the form
+fields const firstName = responses['entry.137930516']; const lastName =
+responses['entry.365860481']; const email = responses['entry.1596585368']; const
+phone = responses['entry.1599107456']; const location =
+responses['entry.344818518']; const profession = responses['entry.1088893444'];
+const recaptchaResponse = responses['g-recaptcha-response']; //
+------------------------------ // Verify reCAPTCHA Response //
+------------------------------ const secretKey =
+"6Lf291YrAAAAAFLzntU_vlxcOFUP60W"; // Use your actual secret key from reCAPTCHA
+const verificationUrl = "https://www.google.com/recaptcha/api/siteverify"; const
+options = { "method": "post", "payload": { "secret": secretKey, "response":
+recaptchaResponse } }; const response = UrlFetchApp.fetch(verificationUrl,
+options); const json = JSON.parse(response.getContentText()); if (!json.success)
+{ return ContentService.createTextOutput(JSON.stringify({ status: 'reCAPTCHA
+failed' })) .setMimeType(ContentService.MimeType.JSON); } //
+------------------------------ // Generate Email Verification Link //
+------------------------------ const verificationCode =
+Math.random().toString(36).substring(2, 15); // Generate a random verification
+code const verifyEmailUrl =
+"https://kconnect-u1-0.vercel.app/verify-email.html?code=" + verificationCode;
+// const verifyEmailUrl =
+"https://kconnect-u1-0.vercel.app/verify-email.html?code=" + verificationCode;
+// Store the verification code for later use storeVerificationCode(email,
+verificationCode); // Send the verification email to the user const userSubject
+= "KonnectU Solutions - Email Verification"; const userHtml = `
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto">
+    <h2 style="color: #333">Please Verify Your Email Address</h2>
+    <p>Dear <strong>${firstName.toUpperCase()}</strong>,</p>
+    <p>
+        Thank you for your submission. Please verify your email address by
+        clicking the link below:
+    </p>
+    <p>
+        <a href="${verifyEmailUrl}">Click here to verify your email address</a>
+    </p>
+    <p>If you did not submit this form, please disregard this email.</p>
+    <p>Best regards,<br />The KonnectU Solutions Team</p>
+</div>
+`; GmailApp.sendEmail(email, userSubject, "", { htmlBody: userHtml }); //
+------------------------------ // Store form data temporarily until verification
+is done storeFormDataTemporarily(firstName, lastName, email, phone, location,
+profession); return ContentService.createTextOutput(JSON.stringify({ status:
+'success' })).setMimeType(ContentService.MimeType.JSON); } // Temporarily store
+form data until verification is complete function
+storeFormDataTemporarily(firstName, lastName, email, phone, location,
+profession) { // Access the active Google Sheet const sheet =
+SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Temporary SignUp Data');
+// Make sure this sheet exists // If the sheet doesn't exist, you'll need to
+create it manually in Google Sheets if (!sheet) { throw new Error("Temporary
+SignUp Data sheet not found."); } // Append the data to the sheet
+sheet.appendRow([firstName, lastName, email, phone, location, profession, new
+Date()]); } // Store verification code for later use (for validation in
+verify-email.html) function storeVerificationCode(email, verificationCode) {
+const sheet =
+SpreadsheetApp.getActiveSpreadsheet().getSheetByName('VerificationCodes');
+sheet.appendRow([email, verificationCode, new Date()]); } function
+sendToGoogleForms(firstName, lastName, email, phone, location, profession,
+timestamp) { var formUrl =
+"https://docs.google.com/forms/u/0/d/e/1FAIpQLSdrkRnL6L05367s0bYG6WJimzEsmDH7hHcOaZHiozdZCPbCTQ/formResponse";
+var payload = { "entry.137930516": firstName, "entry.365860481": lastName,
+"entry.1596585368": email, "entry.1599107456": phone, "entry.344818518":
+location, "entry.1088893444": profession, }; var options = { "method": "post",
+"payload": payload }; UrlFetchApp.fetch(formUrl, options); // Submit data to
+Google Forms }
