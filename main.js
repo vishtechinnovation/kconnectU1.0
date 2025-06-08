@@ -212,3 +212,26 @@ function closeModal() {
 function reloadPage() {
     window.location.reload();
 }
+
+// Check verification status when the page loads
+function checkVerificationStatus() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+
+    if (token) {
+        const scriptUrl =
+            "https://script.google.com/macros/s/AKfycbx426mxsi-Kckj5wR3RP0DfsWTn5GN0aL5R04HEQvEQfHB-ziiUvylS4WAPVpuICLyT/exec";
+        fetch(`${scriptUrl}?token=${token}`)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === "success") {
+                    showModal(); // Show success modal
+                } else {
+                    alert("Verification failed.");
+                }
+            });
+    }
+}
+
+// Run this function when the page loads
+window.onload = checkVerificationStatus;
