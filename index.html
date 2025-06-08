@@ -129,72 +129,123 @@
                     Early Sign Up
                 </h2>
 
-                <form id="dynamicForm" class="space-y-4">
-                    <input
-                        type="text"
-                        id="firstName"
-                        placeholder="First Name"
-                        class="w-full p-3 border rounded-md"
-                        required />
-                    <input
-                        type="text"
-                        id="lastName"
-                        placeholder="Last Name"
-                        class="w-full p-3 border rounded-md"
-                        required />
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Email Address"
-                        class="w-full p-3 border rounded-md"
-                        required />
-                    <input
-                        type="tel"
-                        id="phone"
-                        placeholder="Phone Number"
-                        class="w-full p-3 border rounded-md"
-                        required />
-                    <input
-                        type="text"
-                        id="location"
-                        placeholder="Location"
-                        class="w-full p-3 border rounded-md"
-                        required />
-                    <input
-                        type="text"
-                        id="profession"
-                        placeholder="What is your profession?"
-                        class="w-full p-3 border rounded-md"
-                        required />
+                <form id="userForm">
+                    <div class="mb-3">
+                        <label for="firstName" class="block text-gray-700"
+                            >First Name</label
+                        >
+                        <input
+                            type="text"
+                            id="firstName"
+                            name="firstName"
+                            placeholder="Your first name"
+                            class="w-full p-2 border rounded-lg"
+                            required />
+                    </div>
 
-                    <div
-                        class="g-recaptcha"
-                        data-sitekey="6Lf291YrAAAAAIfhw5tCQkAz42ij_GqfAFZbxw4t"></div>
+                    <div class="mb-3">
+                        <label for="lastName" class="block text-gray-700"
+                            >Last Name</label
+                        >
+                        <input
+                            type="text"
+                            id="lastName"
+                            name="lastName"
+                            placeholder="Your last name"
+                            class="w-full p-2 border rounded-lg"
+                            required />
+                    </div>
 
-                    <button
-                        type="submit"
-                        class="w-full bg-yellow-500 text-white py-3 rounded-md cursor-pointe">
-                        Submit
-                    </button>
-                </form>
-            </div>
+                    <div class="mb-3">
+                        <label for="email" class="block text-gray-700"
+                            >Email Address</label
+                        >
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Valid Email Address"
+                            class="w-full p-2 border rounded-lg"
+                            required />
+                    </div>
 
-            <!-- Modal Card for Verification Success -->
-            <div
-                id="verificationModal"
-                class="modal hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-                <div class="bg-white p-8 rounded-lg text-center">
-                    <h2 class="text-2xl font-bold">Success!</h2>
-                    <p class="mt-4">
-                        Your email has been successfully verified!
-                    </p>
-                    <div class="mt-4">
+                    <div class="mb-3">
+                        <label for="phone" class="block text-gray-700"
+                            >Phone Number</label
+                        >
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Valid number"
+                            class="w-full p-2 border rounded-lg"
+                            required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="location" class="block text-gray-700"
+                            >Location</label
+                        >
+                        <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            placeholder="State, Country"
+                            class="w-full p-2 border rounded-lg"
+                            required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="profession" class="block text-gray-700"
+                            >What’s your profession?</label
+                        >
+                        <input
+                            type="text"
+                            id="profession"
+                            name="profession"
+                            placeholder="Software Developer"
+                            class="w-full p-2 border rounded-lg"
+                            required />
+                    </div>
+
+                    <!-- Google reCAPTCHA -->
+                    <div class="mb-4">
+                        <div
+                            class="g-recaptcha"
+                            data-sitekey="YOUR_SITE_KEY"></div>
+                    </div>
+
+                    <div class="text-center">
                         <button
-                            id="closeModal"
-                            class="bg-green-600 text-white py-2 px-4 rounded-md">
-                            Close
+                            type="submit"
+                            class="w-full bg-yellow-500 text-white px-4 py-2 rounded-lg">
+                            Submit
                         </button>
                     </div>
+                </form>
+            </div>
+        </div>
+        <div
+            id="verificationModal"
+            class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center">
+            <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+                <h2 class="text-xl text-center mb-4">
+                    Verification Successful
+                </h2>
+                <p class="text-center">
+                    Your email has been successfully verified.
+                </p>
+                <div class="mt-4 text-center">
+                    <button
+                        onclick="reloadPage()"
+                        class="bg-green-500 text-white px-4 py-2 rounded-lg">
+                        Go to Homepage
+                    </button>
+                    <button
+                        onclick="closeModal()"
+                        class="bg-red-500 text-white px-4 py-2 rounded-lg">
+                        Cancel
+                    </button>
                 </div>
             </div>
         </div>

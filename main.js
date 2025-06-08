@@ -146,98 +146,69 @@ function teamComponent() {
     };
 }
 
-S;
-// Form submission handler
-document
-    .getElementById("dynamicForm")
-    .addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent form from submitting normally
+// JavaScript for form validation and submission
 
-        const firstName = document.getElementById("firstName").value;
-        const lastName = document.getElementById("lastName").value;
+document
+    .getElementById("userForm")
+    .addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // Form validation (Regex for email and phone number)
         const email = document.getElementById("email").value;
         const phone = document.getElementById("phone").value;
-        const location = document.getElementById("location").value;
-        const profession = document.getElementById("profession").value;
-        const recaptchaResponse = grecaptcha.getResponse();
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        const phonePattern = /^[0-9]{10}$/;
 
-        // Email Validation using regex
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailRegex.test(email)) {
+        if (!emailPattern.test(email)) {
             alert("Please enter a valid email address.");
-            return; // Stop submission
+            return;
         }
 
-        // Phone Validation using regex (matches US phone format, adjust regex for your locale if necessary)
-        const phoneRegex = /^[0-9]{10}$/; // Simple 10-digit phone validation
-        if (!phoneRegex.test(phone)) {
-            alert("Please enter a valid phone number (10 digits).");
-            return; // Stop submission
+        if (!phonePattern.test(phone)) {
+            alert("Please enter a valid phone number.");
+            return;
         }
 
-        const formData = {
-            firstName,
-            lastName,
-            email,
-            phone,
-            location,
-            profession,
-            "g-recaptcha-response": recaptchaResponse,
-        };
+        // Google reCAPTCHA verification
+        const recaptchaResponse = grecaptcha.getResponse();
+        if (!recaptchaResponse) {
+            alert("Please verify that you are not a robot.");
+            return;
+        }
 
-        // Send form data to the backend
-        fetch("https://kconnect-u1-0.vercel.app/submit", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    alert(
-                        "Form submitted successfully! Please check your email for verification."
-                    );
-                    window.location.reload(); // Reload the page
+        // Send form data to Google Apps Script (via a POST request)
+        const formData = new FormData(document.getElementById("userForm"));
+        formData.append("recaptcha_response", recaptchaResponse);
+
+        axios
+            .post(
+                "https://script.google.com/macros/s/AKfycbx426mxsi-Kckj5wR3RP0DfsWTn5GN0aL5R04HEQvEQfHB-ziiUvylS4WAPVpuICLyT/exec",
+                formData
+            )
+            .then((response) => {
+                if (response.data.status === "success") {
+                    alert("Form submitted successfully!");
+                    // Redirect or reload page
+                    window.location.reload();
                 } else {
-                    alert("Error: " + data.message);
+                    alert("Submission failed. Please try again.");
                 }
             })
             .catch((error) => {
-                alert("Error: " + error);
+                console.error(error);
+                alert("An error occurred. Please try again.");
             });
     });
 
-// Handle modal verification response
-const urlParams = new URLSearchParams(window.location.search);
-const token = urlParams.get("token");
-
-if (token) {
-    // Call backend to verify the token
-    fetch(`https://kconnect-u1-0.vercel.app/verify?token=${token}`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success) {
-                // Show success modal
-                document
-                    .getElementById("verificationModal")
-                    .classList.remove("hidden");
-
-                // Auto-reload after 5 seconds
-                setTimeout(function () {
-                    window.location.reload();
-                }, 5000);
-            } else {
-                alert("Invalid or expired token.");
-            }
-        })
-        .catch((error) => console.error("Error verifying token:", error));
+// Modal control for verification
+function showModal() {
+    document.getElementById("verificationModal").classList.remove("hidden");
 }
 
-// Close modal manually
-document.getElementById("closeModal").addEventListener("click", function () {
+function closeModal() {
     document.getElementById("verificationModal").classList.add("hidden");
-    window.location.reload(); // Reload the page after closing the modal
-});
+}
+
+function reloadPage() {
+    window.location.reload();
+}
