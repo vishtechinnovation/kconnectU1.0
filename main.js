@@ -216,7 +216,7 @@ function reloadPage() {
 // Check verification status when the page loads
 function checkVerificationStatus() {
     const urlParams = new URLSearchParams(window.location.search);
-    const verified = urlParams.get("verified"); // Check if 'verified' is in the URL
+    const token = urlParams.get("token");
 
     if (token) {
         const scriptUrl =
