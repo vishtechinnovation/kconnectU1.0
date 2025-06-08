@@ -207,9 +207,6 @@ function checkVerificationStatus() {
 
     if (verified === "true") {
         showModal(); // Show the success modal
-    } else {
-        // Handle verification failure (optional)
-        alert("Verification failed. Please try again.");
     }
 }
 
